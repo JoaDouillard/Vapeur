@@ -12,10 +12,14 @@
     <ul>
       {{#each games}}
         <li>
+          {{#if this.coverImagePath}}
+            <img src="{{this.coverImagePath}}" alt="Couverture de {{this.title}}" style="max-width: 200px; max-height: 300px;">
+          {{/if}}
           <h2>{{this.title}}</h2>
           <p>{{this.description}}</p>
           <p><strong>Éditeur :</strong> {{this.editor.name}}</p>
           <p><strong>Genre :</strong> {{this.genre.name}}</p>
+          <p><strong>Date de sortie :</strong> {{formatDate this.releaseDate}}</p>
 
           <!-- Bouton pour modifier le jeu -->
           <a href="/games/{{this.id}}/edit">

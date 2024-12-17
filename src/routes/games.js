@@ -8,7 +8,7 @@ const {
   deleteGame,
   editGame
 } = require('../controllers/gamesController');
-const prisma = require('../prismaClient'); // Assurez-vous que ce fichier pointe vers votre instance PrismaClient
+const prisma = require('../prismaClient');
 
 // Route pour afficher la liste des jeux
 router.get('/', async (req, res, next) => {
@@ -70,35 +70,60 @@ router.get('/:id/edit', async (req, res) => {
 });
 
 // Route pour mettre à jour un jeu
-router.post('/:id/edit', async (req, res) => {
+router.post('/:id/edit', upload.single('coverImage'), async (req, res) => {
   try {
     const gameId = parseInt(req.params.id);
     const { title, description, releaseDate, genreId, editorId } = req.body;
+    const coverImage = req.file ? req.file.filename : null;
 
     if (isNaN(gameId)) {
-      throw new Error("ID de jeu invalide.");
+      return res.status(400).send("ID de jeu invalide.");
     }
 
-    // Vérifier que tous les champs requis sont présents
-    if (!title || !releaseDate || !genreId || !editorId) {
-      throw new Error("Tous les champs obligatoires ne sont pas remplis.");
+    // Debug logs pour comprendre les valeurs
+    console.log('Données reçues:', { 
+      gameId, 
+      title, 
+      description, 
+      releaseDate, 
+      genreId, 
+      editorId,
+      coverImage 
+    });
+
+    // Validation plus souple des champs
+    if (!title || title.trim() === '') {
+      return res.status(400).send("Le titre est obligatoire.");
+    }
+
+    if (!releaseDate) {
+      return res.status(400).send("La date de sortie est obligatoire.");
+    }
+
+    if (!genreId || isNaN(parseInt(genreId))) {
+      return res.status(400).send("Le genre est obligatoire.");
+    }
+
+    if (!editorId || isNaN(parseInt(editorId))) {
+      return res.status(400).send("L'éditeur est obligatoire.");
     }
 
     // Mettre à jour le jeu dans la base de données
-    await prisma.game.update({
+    const updatedGame = await prisma.game.update({
       where: { id: gameId },
       data: {
-        title,
-        description,
+        title: title.trim(),
+        description: description ? description.trim() : null,
         releaseDate: new Date(releaseDate),
         genreId: parseInt(genreId),
         editorId: parseInt(editorId),
+        ...(coverImage && { coverImage }) // Ajouter l'image uniquement si elle existe
       },
     });
 
     res.redirect('/games');
   } catch (error) {
-    console.error('Erreur lors de la mise à jour du jeu:', error.message);
+    console.error('Erreur lors de la mise à jour du jeu:', error);
     res.status(500).send(`Erreur lors de la mise à jour du jeu : ${error.message}`);
   }
 });

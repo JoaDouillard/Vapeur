@@ -12,14 +12,19 @@ const prisma = new PrismaClient();
 const app = express();
 const port = 3000;
 
-// Configuration de Handlebars avec le helper "eq"
+// Configuration de Handlebars avec les helpers
 const hbs = engine({
   extname: '.hbs',
   layoutsDir: path.join(__dirname, 'views/layouts'),
   partialsDir: path.join(__dirname, 'views/partials'),
   defaultLayout: 'main',
   helpers: {
-    eq: (a, b) => a === b // Helper pour comparer deux valeurs
+    eq: (a, b) => a === b, // Helper existant pour comparer deux valeurs
+    formatDate: (date) => {
+      if (!date) return '';
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return new Date(date).toLocaleDateString('fr-FR', options);
+    }
   }
 });
 
@@ -60,3 +65,5 @@ app.get('/', async (req, res) => {
 app.listen(port, () => {
   console.log(`Serveur en cours d'exécution sur http://localhost:${port}`);
 });
+
+module.exports = app;
