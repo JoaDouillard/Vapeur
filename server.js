@@ -3,11 +3,9 @@ const path = require('path');
 const { engine } = require('express-handlebars');
 const bodyParser = require('body-parser');
 const { PrismaClient } = require('@prisma/client');
-
 const gamesRoutes = require('./src/routes/games');
 const genresRoutes = require('./src/routes/genres');
 const editorsRoutes = require('./src/routes/editors');
-
 const prisma = new PrismaClient();
 const app = express();
 const port = 3000;
@@ -19,7 +17,7 @@ const hbs = engine({
   partialsDir: path.join(__dirname, 'views/partials'),
   defaultLayout: 'main',
   helpers: {
-    eq: (a, b) => a === b, // Helper existant pour comparer deux valeurs
+    eq: (a, b) => a === b,
     formatDate: (date) => {
       if (!date) return '';
       const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -36,12 +34,11 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Routes
-app.use('/games', gamesRoutes);
-app.use('/genres', genresRoutes);
-app.use('/editors', editorsRoutes);
+app.use((req, res, next) => {
+  res.locals.activePage = req.path;
+  next();
+});
 
-// Page d'accueil avec quelques jeux en vedette
 app.get('/', async (req, res) => {
   try {
     const featuredGames = await prisma.game.findMany({
@@ -62,13 +59,30 @@ app.get('/', async (req, res) => {
 
     res.render('index', { 
       title: 'Accueil', 
-      games: gamesWithImagePaths 
+      games: gamesWithImagePaths,
+      activePage: '/' 
     });
   } catch (error) {
     console.error(error);
     res.status(500).send('Erreur serveur');
   }
 });
+
+// Routes
+app.use('/games', (req, res, next) => {
+  res.locals.activePage = '/games';
+  next();
+}, gamesRoutes);
+
+app.use('/genres', (req, res, next) => {
+  res.locals.activePage = '/genres';
+  next();
+}, genresRoutes);
+
+app.use('/editors', (req, res, next) => {
+  res.locals.activePage = '/editors';
+  next();
+}, editorsRoutes);
 
 // Démarrer le serveur
 app.listen(port, () => {

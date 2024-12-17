@@ -164,9 +164,20 @@ header nav ul li a {
 }
 
 .nav-link {
+  color: var(--steam-blue-light);
   background-color: var(--steam-gray-medium);
-  color: var(--steam-blue-medium);
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  transition: var(--transition-smooth);
+}
+
+.nav-link.active {
+  color: var(--background-color); /* Couleur du texte */
+  background-color: var(--steam-accent-green); /* Couleur de fond */
+  font-weight: bold;
   transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Footer amélioré */

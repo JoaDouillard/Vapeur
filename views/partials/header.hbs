@@ -1,10 +1,10 @@
 <header>
   <nav>
     <ul>
-      <li><a href="/" class="nav-link">Accueil</a></li>
-      <li><a href="/games" class="nav-link">Jeux</a></li>
-      <li><a href="/genres" class="nav-link">Genres</a></li>
-      <li><a href="/editors" class="nav-link">Editeurs</a></li>
+      <li><a href="/" class="nav-link {{#if (eq activePage '/') }}active{{/if}}">Accueil</a></li>
+      <li><a href="/games" class="nav-link {{#if (eq activePage '/games') }}active{{/if}}">Jeux</a></li>
+      <li><a href="/genres" class="nav-link {{#if (eq activePage '/genres') }}active{{/if}}">Genres</a></li>
+      <li><a href="/editors" class="nav-link {{#if (eq activePage '/editors') }}active{{/if}}">Éditeurs</a></li>
     </ul>
   </nav>
 </header>
