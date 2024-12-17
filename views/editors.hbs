@@ -1,0 +1,21 @@
+{{> header}}
+<main class="editors-management">
+   <h2>Editor Management</h2>
+   <form action="/editors/create" method="POST">
+     <input type="text" name="name" placeholder="Editor Name" required />
+     <button type="submit">Add Editor</button>
+   </form>
+   <ul>
+     {{#each editors}}
+       <li>
+         {{this.name}}
+         <div class="editor-actions">
+           <form action="/editors/delete/{{this.id}}" method="POST" style="display:inline;">
+             <button type="submit" class="btn-delete">Delete</button>
+           </form>
+         </div>
+       </li>
+     {{/each}}
+   </ul>
+</main>
+{{> footer}}

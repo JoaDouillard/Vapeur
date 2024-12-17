@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modifier un jeu</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  {{> header}}
+
+  <main>
+    <h1>Modifier le jeu : {{game.title}}</h1>
+    <form action="/games/{{game.id}}/edit" method="POST" enctype="multipart/form-data">
+      <div>
+        <label for="title">Titre :</label>
+        <input type="text" id="title" name="title" value="{{game.title}}" required>
+      </div>
+      <div>
+        <label for="description">Description :</label>
+        <textarea id="description" name="description">{{game.description}}</textarea>
+      </div>
+      <div>
+        <label for="releaseDate">Date de sortie :</label>
+        <input type="date" id="releaseDate" name="releaseDate" value="{{game.releaseDate}}">
+      </div>
+      <div>
+        <label for="genreId">Genre :</label>
+        <select id="genreId" name="genreId">
+          {{#each genres}}
+            <option value="{{this.id}}" {{#if (eq this.id ../game.genreId)}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div>
+        <label for="editorId">Éditeur :</label>
+        <select id="editorId" name="editorId">
+          {{#each editors}}
+            <option value="{{this.id}}" {{#if (eq this.id ../game.editorId)}}selected{{/if}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div>
+        <label for="coverImage">Image de couverture (facultatif) :</label>
+        <input type="file" id="coverImage" name="coverImage">
+      </div>
+      <button type="submit">Mettre à jour</button>
+    </form>
+  </main>
+
+  {{> footer}}
+</body>
+</html>

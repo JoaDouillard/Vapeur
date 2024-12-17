@@ -1,0 +1,37 @@
+<div>
+    {{> header}}
+    
+    <main>
+        <div class="container">
+            <h1>Gestion des Genres</h1>
+            
+            <div class="container">
+                <h2>Ajouter un Genre</h2>
+                <form action="/genres/create" method="POST">
+                    <div class="form-group">
+                        <label for="name">Nom du Genre</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <button type="submit" class="btn">Ajouter</button>
+                </form>
+            </div>
+
+            <div class="container">
+                <h2>Liste des Genres</h2>
+                <div class="list-items">
+                    {{#each genres}}
+                        <div class="list-item">
+                            <h3>{{this.name}}</h3>
+                            <p>Nombre de jeux : {{this.games.length}}</p>
+                            <form action="/genres/delete/{{this.id}}" method="POST">
+                                <button type="submit" class="btn btn-delete">Supprimer</button>
+                            </form>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {{> footer}}
+</div>

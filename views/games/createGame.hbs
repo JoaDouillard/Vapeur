@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créer un jeu</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  {{> header}}
+
+  <main>
+    <h1>Créer un nouveau jeu</h1>
+    <form action="/games" method="POST" enctype="multipart/form-data">
+      <div>
+        <label for="title">Titre :</label>
+        <input type="text" id="title" name="title" required>
+      </div>
+      <div>
+        <label for="description">Description :</label>
+        <textarea id="description" name="description" required></textarea>
+      </div>
+      <div>
+        <label for="releaseDate">Date de sortie :</label>
+        <input type="date" id="releaseDate" name="releaseDate" required>
+      </div>
+      <div>
+        <label for="genreId">Genre :</label>
+        <select id="genreId" name="genreId">
+          {{#each genres}}
+          <option value="{{this.id}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div>
+        <label for="editorId">Éditeur :</label>
+        <select id="editorId" name="editorId">
+          {{#each editors}}
+          <option value="{{this.id}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div>
+        <label for="coverImage">Image de couverture :</label>
+        <input type="file" id="coverImage" name="coverImage">
+      </div>
+      <button type="submit">Créer</button>
+    </form>
+  </main>
+
+  {{> footer}}
+</body>
+</html>

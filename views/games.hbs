@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jeux - Vapeur</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  {{> header}}
+
+  <main>
+    <h1>Liste des jeux</h1>
+    <ul>
+      {{#each games}}
+        <li>
+          <h2>{{this.title}}</h2>
+          <p>{{this.description}}</p>
+          <p><strong>Éditeur :</strong> {{this.editor.name}}</p>
+          <p><strong>Genre :</strong> {{this.genre.name}}</p>
+
+          <!-- Bouton pour modifier le jeu -->
+          <a href="/games/{{this.id}}/edit">
+            <button type="button">Modifier</button>
+          </a>
+
+          <!-- Formulaire pour supprimer le jeu -->
+          <form action="/games/{{this.id}}/delete" method="POST" style="display:inline;">
+            <button type="submit">Supprimer</button>
+          </form>
+        </li>
+      {{/each}}
+    </ul>
+
+    <!-- Lien pour rediriger vers la page de création d'un jeu -->
+    <div>
+      <a href="/games/create">Créer un nouveau jeu</a>
+    </div>
+  </main>
+
+  {{> footer}}
+</body>
+</html>
