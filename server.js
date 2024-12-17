@@ -36,13 +36,6 @@ app.use('/games', gamesRoutes);
 app.use('/genres', genresRoutes);
 app.use('/editors', editorsRoutes);
 
-// Middleware pour ajouter la page active
-app.use((req, res, next) => {
-  const path = req.path.split('/')[1]; // Récupère le premier segment du chemin
-  res.locals.activePage = path || 'home'; // 'home' pour la page d'accueil
-  next();
-});
-
 // Page d'accueil avec quelques jeux en vedette
 app.get('/', async (req, res) => {
   try {

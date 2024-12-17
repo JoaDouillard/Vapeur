@@ -97,18 +97,21 @@ header nav ul li a {
   font-weight: 500;
 }
 
-header nav ul li a:hover {
+.nav-link {
   background-color: var(--steam-gray-medium);
   color: var(--steam-blue-medium);
   transform: scale(1.05);
 }
 
 /* Page active dans la navigation */
-header nav ul li a.active {
+
+.nav-link.active {
   background-color: var(--steam-blue-medium);
   color: var(--text-color-light);
   font-weight: bold;
 }
+
+
 
 
 

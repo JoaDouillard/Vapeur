@@ -88,4 +88,39 @@ module.exports = {
       throw new Error("Erreur lors de la suppression du jeu");
     }
   },
+
+  
+  // Mise à jour d'un jeu
+  editGame: async (req, res) => {
+    const { gameId } = req.params;
+    const { title, description, releaseDate, genreId, editorId } = req.body;
+    const coverImage = req.file ? req.file.filename : null;
+
+    try {
+      const game = await prisma.game.findUnique({
+        where: { id: parseInt(gameId) }
+      });
+
+      if (!game) {
+        return res.status(404).send('Jeu non trouvé');
+      }
+
+      const updatedGame = await prisma.game.update({
+        where: { id: parseInt(gameId) },
+        data: {
+          title,
+          description,
+          releaseDate: new Date(releaseDate),
+          coverImage: coverImage || game.coverImage, // Si pas de nouvelle image, conserver l'ancienne
+          genreId: parseInt(genreId),
+          editorId: parseInt(editorId),
+        }
+      });
+
+      res.redirect('/games');
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Erreur lors de la mise à jour du jeu');
+    }
+  }
 };

@@ -5,7 +5,8 @@ const {
   showCreateForm, 
   createGame, 
   upload, 
-  deleteGame 
+  deleteGame,
+  editGame
 } = require('../controllers/gamesController');
 const prisma = require('../prismaClient'); // Assurez-vous que ce fichier pointe vers votre instance PrismaClient
 
