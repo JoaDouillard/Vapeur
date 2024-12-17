@@ -4,11 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Modifier un jeu</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="../../css/style.css">
 </head>
 <body>
-  {{> header}}
-
   <main>
     <h1>Modifier le jeu : {{game.title}}</h1>
     <form action="/games/{{game.id}}/edit" method="POST" enctype="multipart/form-data">
@@ -47,7 +45,5 @@
       <button type="submit">Mettre à jour</button>
     </form>
   </main>
-
-  {{> footer}}
 </body>
 </html>
