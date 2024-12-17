@@ -4,36 +4,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vapeur - Accueil</title>
-  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
- <div>
+  <div>
     <main>
-        <div class="container">
-            <h1>Bienvenue sur Vapeur</h1>
-            <p>Gérez votre collection de jeux vidéo facilement !</p>
-        </div>
+      <!-- En-tête principal -->
+      <div class="container">
+        <h1>Bienvenue sur Vapeur</h1>
+        <p>Gérez votre collection de jeux vidéo facilement !</p>
+      </div>
 
-        <div class="container">
-            <h2>Jeux en vedette</h2>
-            <div class="list-items">
-                {{#each games}}
-                    <div class="list-item">
-                        <h3>{{this.title}}</h3>
-                        {{#if this.genre}}
-                            <p>Genre : {{this.genre.name}}</p>
-                        {{/if}}
-                        {{#if this.editor}}
-                            <p>Éditeur : {{this.editor.name}}</p>
-                        {{/if}}
-                        {{#if this.releaseDate}}
-                            <p>Sorti le : {{this.releaseDate}}</p>
-                        {{/if}}
-                    </div>
-                {{/each}}
+      <!-- Liste des jeux en vedette -->
+      <div class="container">
+        <h2>Jeux en vedette</h2>
+        <div class="list-items">
+          {{#each games}}
+            <div class="list-item">
+              <!-- Image de couverture -->
+              {{#if this.coverImagePath}}
+                <img src="{{this.coverImagePath}}" alt="Couverture de {{this.title}}" style="max-width: 200px; max-height: 300px;">
+              {{else}}
+                <p>Aucune image disponible</p>
+              {{/if}}
+            
+              <!-- Titre du jeu -->
+              <h3>{{this.title}}</h3>
+
+              <!-- Description -->
+              {{#if this.description}}
+                <p>{{this.description}}</p>
+              {{/if}}
+
+              <!-- Genre -->
+              {{#if this.genre}}
+                <p><strong>Genre :</strong> {{this.genre.name}}</p>
+              {{/if}}
+
+              <!-- Éditeur -->
+              {{#if this.editor}}
+                <p><strong>Éditeur :</strong> {{this.editor.name}}</p>
+              {{/if}}
+
+              <!-- Date de sortie -->
+              {{#if this.releaseDate}}
+                <p><strong>Date de sortie :</strong> {{formatDate this.releaseDate}}</p>
+              {{/if}}
             </div>
+          {{/each}}
         </div>
+      </div>
     </main>
-</div>
+  </div>
 </body>
 </html>

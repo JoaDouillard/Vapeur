@@ -4,40 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jeux - Vapeur</title>
-  <link rel="stylesheet" href="../public/css/style.css">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <main>
-    <h1>Liste des jeux</h1>
-    <ul>
-      {{#each games}}
-        <li>
-          {{#if this.coverImagePath}}
-            <img src="{{this.coverImagePath}}" alt="Couverture de {{this.title}}" style="max-width: 200px; max-height: 300px;">
-          {{/if}}
-          <h2>{{this.title}}</h2>
-          <p>{{this.description}}</p>
-          <p><strong>Éditeur :</strong> {{this.editor.name}}</p>
-          <p><strong>Genre :</strong> {{this.genre.name}}</p>
-          <p><strong>Date de sortie :</strong> {{formatDate this.releaseDate}}</p>
+  <div>
+    <main>
+      <!-- En-tête principal -->
+      <div class="container">
+        <h1>Liste des jeux</h1>
+        <p>Parcourez et gérez votre collection de jeux</p>
+      </div>
 
-          <!-- Bouton pour modifier le jeu -->
-          <a href="/games/{{this.id}}/edit">
-            <button type="button">Modifier</button>
-          </a>
+      <!-- Liste des jeux -->
+      <div class="container">
+        <h2>Tous les jeux</h2>
+        <div class="list-items">
+          {{#each games}}
+            <div class="list-item">
+              <!-- Image de couverture -->
+              {{#if this.coverImagePath}}
+                <img src="{{this.coverImagePath}}" alt="Couverture de {{this.title}}" style="max-width: 200px; max-height: 300px;">
+              {{else}}
+                <p>Aucune image disponible</p>
+              {{/if}}
+            
+              <!-- Titre du jeu -->
+              <h3>{{this.title}}</h3>
 
-          <!-- Formulaire pour supprimer le jeu -->
-          <form action="/games/{{this.id}}/delete" method="POST" style="display:inline;">
-            <button type="submit">Supprimer</button>
-          </form>
-        </li>
-      {{/each}}
-    </ul>
+              <!-- Description -->
+              {{#if this.description}}
+                <p>{{this.description}}</p>
+              {{/if}}
 
-    <!-- Lien pour rediriger vers la page de création d'un jeu -->
-    <div>
-      <a href="/games/create">Créer un nouveau jeu</a>
-    </div>
-  </main>
+              <!-- Genre -->
+              {{#if this.genre}}
+                <p><strong>Genre :</strong> {{this.genre.name}}</p>
+              {{/if}}
+
+              <!-- Éditeur -->
+              {{#if this.editor}}
+                <p><strong>Éditeur :</strong> {{this.editor.name}}</p>
+              {{/if}}
+
+              <!-- Date de sortie -->
+              {{#if this.releaseDate}}
+                <p><strong>Date de sortie :</strong> {{formatDate this.releaseDate}}</p>
+              {{/if}}
+
+              <!-- Actions -->
+              <div class="game-actions">
+                <!-- Bouton pour modifier le jeu -->
+                <a href="/games/{{this.id}}/edit" class="btn">
+                  Modifier
+                </a>
+
+                <!-- Formulaire pour supprimer le jeu -->
+                <form action="/games/{{this.id}}/delete" method="POST" style="display:inline;">
+                  <button type="submit" class="btn btn-delete">Supprimer</button>
+                </form>
+              </div>
+            </div>
+          {{/each}}
+        </div>
+      </div>
+
+      <!-- Lien pour rediriger vers la page de création d'un jeu -->
+      <div style="text-align: center;">
+        <a href="/games/create" class="btn">Créer un nouveau jeu</a>
+      </div>
+    </main>
+  </div>
 </body>
 </html>

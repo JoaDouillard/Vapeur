@@ -51,9 +51,18 @@ app.get('/', async (req, res) => {
         editor: true
       }
     });
+
+    // Ajouter le chemin complet de l'image
+    const gamesWithImagePaths = featuredGames.map(game => ({
+      ...game,
+      coverImagePath: game.coverImage 
+        ? `/images/games/${game.coverImage}` 
+        : null
+    }));
+
     res.render('index', { 
       title: 'Accueil', 
-      games: featuredGames 
+      games: gamesWithImagePaths 
     });
   } catch (error) {
     console.error(error);

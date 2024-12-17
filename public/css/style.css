@@ -7,6 +7,11 @@
   --steam-gray-medium: #2a475e;
   --steam-accent-green: #4CAF50;
   --steam-accent-red: #ff5252;
+
+  
+  --steam-color-1: #ffffff;
+  --steam-color-2: #6b8ea3; 
+  
   
   /* Couleurs de texte et fond */
   --background-color: #f4f7fa;
@@ -54,13 +59,74 @@ body {
   background-attachment: fixed;
 }
 
-/* Conteneur principal avec amélioration de l'espace et de la flexibilité */
 .main-content {
   flex: 1 1 auto;
   width: 100%;
   max-width: 1400px; /* Largeur légèrement augmentée */
   margin: 0 auto;
   padding: var(--spacing-large) var(--spacing-medium);
+}
+
+/* Conteneurs principaux */
+.container {
+  background: var(--steam-color-1);
+  padding: var(--spacing-medium);
+  border-radius: 8px;
+  margin-bottom: var(--spacing-large);
+}
+
+/* Listes d'éléments */
+.list-items {
+  padding: var(--spacing-small);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-small);
+}
+
+.list-item {
+  background: var(--steam-color-2);
+  color: var(--steam-blue-dark);
+  padding: var(--spacing-medium);
+  border-radius: 8px;
+  text-align: center;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.list-item:hover {
+  background-color: var(--steam-blue-light);
+  color: var(--steam-blue-dark);
+}
+
+.list-item h3 {
+  margin-bottom: var(--spacing-small);
+}
+
+.game-actions {
+  display: flex;
+  justify-content: center;   /* Centre les boutons horizontalement */
+  gap: 20px;                 /* Ajoute un espace de 20px entre les boutons */
+}
+
+.btn {
+  background-color: var(--steam-accent-green);
+  color: var(--text-color-light);
+  padding: 0.5rem 0.8rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  color: #ffffff;             /* Optionnel : Définir la couleur du texte */ 
+  font-size: 15px;         /* Définir la taille du texte */
+  text-decoration: none;   /* Enlever le soulignage */
+}
+
+.btn:hover {
+  background-color: var(--steam-blue-medium);
+}
+
+.btn-delete {
+  background-color: var(--steam-accent-red);
 }
 
 /* Navigation avec amélioration de la réactivité */
@@ -110,10 +176,6 @@ header nav ul li a {
   color: var(--text-color-light);
   font-weight: bold;
 }
-
-
-
-
 
 /* Footer amélioré */
 footer {
