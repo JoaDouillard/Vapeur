@@ -1,3 +1,5 @@
+Bien sûr, voici le README.md modifié pour ajouter les étapes de création des dossiers "images" et "games" :
+
 ### **ENGLISH README.md**
 ### **Created by Joachim Douillard and Mathis Ciochetto**
 
@@ -39,7 +41,21 @@ Before starting, ensure the following are pre-installed:
    DATABASE_URL="file:./prisma/database.db"
    ```
 
-4. **Configure Prisma**:
+4. **Create required directories**:
+
+   - Create the `images` directory inside `public`:
+
+     ```bash
+     mkdir -p public/images
+     ```
+
+   - Create the `games` directory inside `images`:
+
+     ```bash
+     mkdir -p public/images/games
+     ```
+
+5. **Configure Prisma**:
 
    - Initialize the database and apply migrations:
 
@@ -53,13 +69,13 @@ Before starting, ensure the following are pre-installed:
      npm run seed
      ```
 
-5. **Start the server**:
+6. **Start the server**:
 
    ```bash
    npm start
    ```
 
-6. **Access the application** in your browser:
+7. **Access the application** in your browser:
 
    ```
    http://localhost:3000
@@ -80,7 +96,7 @@ Before starting, ensure the following are pre-installed:
 
 ---
 
-## **Structure du Site**
+## **Site Structure**
 
 ```
 vapeur/
@@ -167,7 +183,21 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
    DATABASE_URL="file:./prisma/database.db"
    ```
 
-4. **Configurer Prisma** :
+4. **Créer les répertoires nécessaires** :
+
+   - Créer le répertoire `images` dans `public` :
+
+     ```bash
+     mkdir -p public/images
+     ```
+
+   - Créer le répertoire `games` dans `images` :
+
+     ```bash
+     mkdir -p public/images/games
+     ```
+
+5. **Configurer Prisma** :
 
    - Initialiser la base de données et appliquer les migrations :
 
@@ -181,13 +211,13 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
      npm run seed
      ```
 
-5. **Démarrer le serveur** :
+6. **Démarrer le serveur** :
 
    ```bash
    npm start
    ```
 
-6. **Accéder à l'application** dans votre navigateur :
+7. **Accéder à l'application** dans votre navigateur :
 
    ```
    http://localhost:3000

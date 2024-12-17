@@ -169,14 +169,6 @@ header nav ul li a {
   transform: scale(1.05);
 }
 
-/* Page active dans la navigation */
-
-.nav-link.active {
-  background-color: var(--steam-blue-medium);
-  color: var(--text-color-light);
-  font-weight: bold;
-}
-
 /* Footer amélioré */
 footer {
   flex-shrink: 0;
