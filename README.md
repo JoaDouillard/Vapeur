@@ -23,7 +23,7 @@ Before starting, ensure the following are pre-installed:
 1. **Clone the Git repository**:
 
    ```bash
-   git clone <REPO_URL>
+   git clone https://github.com/JoaDouillard/Vapeur.git
    cd Vapeur
    ```
 
@@ -34,12 +34,16 @@ Before starting, ensure the following are pre-installed:
    ```
 
 3. **Create a `.env` file** at the root of the project to configure environment variables:
-
+   
+   ```bash
+   touch .env
+   ```
+   
    ```env
-   DATABASE_URL="file:./prisma/database.db"
+   DATABASE_URL="file:./prisma/testdatabase.db"
    ```
 
-4. **Create required directories**:
+5. **Create required directories**:
 
    - Create the `images` directory inside `public`:
 
@@ -53,12 +57,12 @@ Before starting, ensure the following are pre-installed:
      mkdir -p public/images/games
      ```
 
-5. **Configure Prisma**:
+6. **Configure Prisma**:
 
    - Initialize the database and apply migrations:
 
      ```bash
-     npx prisma migrate dev --name init
+     npx prisma migrate dev 
      ```
 
    - Seed the database with default genres and publishers:
@@ -67,13 +71,13 @@ Before starting, ensure the following are pre-installed:
      npm run seed
      ```
 
-6. **Start the server**:
+7. **Start the server**:
 
    ```bash
    npm start
    ```
 
-7. **Access the application** in your browser:
+8. **Access the application** in your browser:
 
    ```
    http://localhost:3000
@@ -99,7 +103,7 @@ Before starting, ensure the following are pre-installed:
 ```
 vapeur/
 ├── prisma/
-│   ├── database.bd                       # SQLite database file
+│   ├── testdatabase.bd                   # test SQLite database file
 │   ├── schema.prisma                     # Prisma database schema
 │   └── seed.js                           # Script to populate the database
 ├── public/
@@ -164,7 +168,7 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
 1. **Cloner le dépôt Git** :
 
    ```bash
-   git clone <REPO_URL>
+   git clone https://github.com/JoaDouillard/Vapeur.git
    cd Vapeur
    ```
 
@@ -176,11 +180,15 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
 
 3. **Créer un fichier `.env`** à la racine du projet pour configurer les variables d'environnement :
 
-   ```env
-   DATABASE_URL="file:./prisma/database.db"
+   ```bash
+   touch .env
    ```
 
-4. **Créer les répertoires nécessaires** :
+   ```env
+   DATABASE_URL="file:./prisma/testdatabase.db"
+   ```
+
+5. **Créer les répertoires nécessaires** :
 
    - Créer le répertoire `images` dans `public` :
 
@@ -194,12 +202,12 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
      mkdir -p public/images/games
      ```
 
-5. **Configurer Prisma** :
+6. **Configurer Prisma** :
 
    - Initialiser la base de données et appliquer les migrations :
 
      ```bash
-     npx prisma migrate dev --name init
+     npx prisma migrate dev
      ```
 
    - Remplir la base de données avec des données initiales (genres et éditeurs) :
@@ -208,13 +216,13 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
      npm run seed
      ```
 
-6. **Démarrer le serveur** :
+7. **Démarrer le serveur** :
 
    ```bash
    npm start
    ```
 
-7. **Accéder à l'application** dans votre navigateur :
+8. **Accéder à l'application** dans votre navigateur :
 
    ```
    http://localhost:3000
@@ -240,7 +248,7 @@ Avant de commencer, assurez-vous d'avoir les éléments suivants installés :
 ```
 vapeur/
 ├── prisma/
-│   ├── database.bd                       # Base de données SQLite
+│   ├── testdatabase.bd                       # Base de données SQLite de test 
 │   ├── schema.prisma                     # Schéma de la base de données Prisma
 │   └── seed.js                           # Script pour remplir la base de données
 ├── public/
