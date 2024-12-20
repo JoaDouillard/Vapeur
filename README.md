@@ -1,5 +1,3 @@
-Bien sûr, voici le README.md modifié pour ajouter les étapes de création des dossiers "images" et "games" :
-
 ### **ENGLISH README.md**
 ### **Created by Joachim Douillard and Mathis Ciochetto**
 
@@ -140,7 +138,6 @@ vapeur/
 ├── README.md                             # Project documentation
 └── server.js                             # Server entry point
 ```
-
 
 ### **README.md EN FRANÇAIS**  
 ### **Créé par Joachim Douillard et Mathis Ciochetto**
